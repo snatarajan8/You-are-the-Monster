@@ -26,11 +26,34 @@ mkdir -p build/classes build/libs
 
 # Detect platform
 OS=$(uname -s)
+ARCH=$(uname -m)
 case $OS in
-    Linux*)     PLATFORM=linux;;
-    Darwin*)    PLATFORM=mac;;
-    MINGW*|MSYS*|CYGWIN*) PLATFORM=win;;
-    *)          PLATFORM=linux;;
+    Linux*)     
+        if [ "$ARCH" = "aarch64" ]; then
+            PLATFORM="linux-aarch64"
+            JAVAFX_ARCH="aarch64"
+        else
+            PLATFORM="linux-x64"
+            JAVAFX_ARCH="x64"
+        fi
+        ;;
+    Darwin*)    
+        if [ "$ARCH" = "arm64" ]; then
+            PLATFORM="macos-aarch64"
+            JAVAFX_ARCH="aarch64"
+        else
+            PLATFORM="macos-x64"
+            JAVAFX_ARCH="x64"
+        fi
+        ;;
+    MINGW*|MSYS*|CYGWIN*) 
+        PLATFORM="windows-x64"
+        JAVAFX_ARCH="x64"
+        ;;
+    *)          
+        PLATFORM="linux-x64"
+        JAVAFX_ARCH="x64"
+        ;;
 esac
 echo "Platform: $PLATFORM"
 
@@ -42,19 +65,35 @@ if [ ! -d "$JAVAFX_DIR" ]; then
     mkdir -p "$JAVAFX_DIR"
     
     JAVAFX_VERSION="17.0.2"
-    JAVAFX_URL="https://download2.gluonhq.com/openjfx/${JAVAFX_VERSION}/openjfx-${JAVAFX_VERSION}_${PLATFORM}-bin-sdk.zip"
+    JAVAFX_URL="https://download2.gluonhq.com/openjfx/${JAVAFX_VERSION}/openjfx-${JAVAFX_VERSION}_${JAVAFX_ARCH}_bin-sdk.zip"
     
     echo "Downloading from: $JAVAFX_URL"
     curl -L -o /tmp/javafx.zip "$JAVAFX_URL" 2>/dev/null
+    CURL_EXIT=$?
     
-    if [ $? -eq 0 ]; then
-        echo "Extracting JavaFX..."
-        unzip -q -o /tmp/javafx.zip -d "$JAVAFX_DIR"
-        rm /tmp/javafx.zip
-    else
-        echo "Error: Could not download JavaFX."
+    if [ $CURL_EXIT -ne 0 ]; then
+        echo "Error: Could not download JavaFX (curl failed with exit code $CURL_EXIT)."
         echo "Please download JavaFX SDK manually from https://gluonhq.com/products/javafx/"
         echo "Extract it to lib/javafx/ directory."
+        exit 1
+    fi
+    
+    # Check if file is a valid zip
+    file /tmp/javafx.zip | grep -q "Zip"
+    if [ $? -ne 0 ]; then
+        echo "Error: Downloaded file is not a valid zip archive."
+        echo "URL may be incorrect. Please check your internet connection."
+        rm -f /tmp/javafx.zip
+        exit 1
+    fi
+    
+    echo "Extracting JavaFX..."
+    unzip -q -o /tmp/javafx.zip -d "$JAVAFX_DIR"
+    UNZIP_EXIT=$?
+    rm -f /tmp/javafx.zip
+    
+    if [ $UNZIP_EXIT -ne 0 ]; then
+        echo "Error: Could not extract JavaFX."
         exit 1
     fi
 fi

@@ -23,11 +23,28 @@ fi
 
 # Detect platform
 OS=$(uname -s)
+ARCH=$(uname -m)
 case $OS in
-    Linux*)     PLATFORM=linux;;
-    Darwin*)    PLATFORM=mac;;
-    MINGW*|MSYS*|CYGWIN*) PLATFORM=win;;
-    *)          PLATFORM=linux;;
+    Linux*)     
+        if [ "$ARCH" = "aarch64" ]; then
+            PLATFORM="linux-aarch64"
+        else
+            PLATFORM="linux-x64"
+        fi
+        ;;
+    Darwin*)    
+        if [ "$ARCH" = "arm64" ]; then
+            PLATFORM="macos-aarch64"
+        else
+            PLATFORM="macos-x64"
+        fi
+        ;;
+    MINGW*|MSYS*|CYGWIN*) 
+        PLATFORM="windows-x64"
+        ;;
+    *)          
+        PLATFORM="linux-x64"
+        ;;
 esac
 
 # Find JavaFX
