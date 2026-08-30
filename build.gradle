@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+group = 'com.ludumdare33'
+version = '1.0.0'
+description = 'You Are The Monster - Ludum Dare 33'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+javafx {
+    version = "17.0.2"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+dependencies {
+    implementation 'org.json:json:20231013'
+}
+
+application {
+    mainClass = 'Game'
+}
+
+shadowJar {
+    archiveBaseName.set('YouAreTheMonster')
+    archiveClassifier.set('')
+    archiveVersion.set('1.0.0')
+    
+    manifest {
+        attributes 'Main-Class': 'Game'
+    }
+    
+    // Merge service files
+    mergeServiceFiles()
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'Game',
+            'Implementation-Title': 'You Are The Monster',
+            'Implementation-Version': version
+        )
+    }
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
