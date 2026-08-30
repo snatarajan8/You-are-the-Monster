@@ -48,7 +48,7 @@
 
 ---
 
-## Game Design: "Lunar Curse"
+## Game Design: "You Are The Monster"
 
 ### Concept
 You ARE the monster. Play as a cursed werewolf fighting through a dark fantasy world. Grow stronger, unlock abilities, defeat the Vampire Lord who cursed you.

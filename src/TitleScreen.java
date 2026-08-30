@@ -25,14 +25,14 @@ public class TitleScreen {
         background.setFill(Color.rgb(10, 10, 26));
         
         // Title
-        titleText = new Text(width/2 - 200, height/2 - 100, "LUNAR CURSE");
+        titleText = new Text(width/2 - 250, height/2 - 100, "YOU ARE THE MONSTER");
         titleText.setFill(Color.WHITE);
-        titleText.setFont(Font.font("Monospace", 64));
+        titleText.setFont(Font.font("Monospace", 56));
         
         // Subtitle
-        subtitleText = new Text(width/2 - 180, height/2 - 50, "You Are The Monster");
+        subtitleText = new Text(width/2 - 150, height/2 - 50, "A Ludum Dare 33 Game");
         subtitleText.setFill(Color.LIGHTGRAY);
-        subtitleText.setFont(Font.font("Monospace", 24));
+        subtitleText.setFont(Font.font("Monospace", 18));
         
         // Start prompt
         startText = new Text(width/2 - 150, height/2 + 20, "Press ENTER to start");

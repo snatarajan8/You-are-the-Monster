@@ -138,7 +138,7 @@ public class Game extends Application {
 
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Lunar Curse - Ludum Dare 33");
+        primaryStage.setTitle("You Are The Monster - Ludum Dare 33");
         primaryStage.show();
 
         // Game loop
@@ -168,7 +168,7 @@ public class Game extends Application {
         levelPane.getChildren().clear();
         
         // Show menu text
-        Text titleText = new Text(WIDTH/2 - 200, HEIGHT/2 - 80, "LUNAR CURSE");
+        Text titleText = new Text(WIDTH/2 - 280, HEIGHT/2 - 80, "YOU ARE THE MONSTER");
         titleText.setFill(Color.WHITE);
         titleText.setFont(Font.font("Monospace", 48));
         levelPane.getChildren().add(titleText);
