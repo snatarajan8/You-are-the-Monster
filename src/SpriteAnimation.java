@@ -50,6 +50,11 @@ public class SpriteAnimation extends Transition {
 
     protected void interpolate(double frac) {
         Image[] sequence = sequences.get(currentState);
+        if (sequence == null) {
+            // Fallback to first available animation
+            sequence = sequences.values().iterator().next();
+            if (sequence == null) return;
+        }
         int index = (int)(frac * sequence.length);
         if (index == sequence.length) {
             index = 0;

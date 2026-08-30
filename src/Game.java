@@ -11,6 +11,7 @@ import java.util.HashSet;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
+import java.util.List;
 
 public class Game extends Application {
 
@@ -239,8 +240,6 @@ public class Game extends Application {
     private void startGame() {
         currentState = GameState.PLAYING;
         levelPane.getChildren().clear();
-        initUnits();
-        levelPane.getChildren().clear();
         units.clear();
         characters.clear();
         levelManager.loadLevel(0);
@@ -365,6 +364,8 @@ public class Game extends Application {
         
         // Update camera to follow player
         camera.update(player.getRectangle());
+        levelPane.setLayoutX(-camera.getX());
+        levelPane.setLayoutY(-camera.getY());
         
         // Update HUD
         hud.update(player.getHealth(), player.getMaxHealth());
@@ -374,6 +375,13 @@ public class Game extends Application {
         
         // Update level text
         levelText.setText("Level: " + (levelManager.getCurrentLevelIndex() + 1) + "/" + levelManager.getTotalLevels());
+        
+        // Update damage numbers
+        for (DamageNumber dmgNum : player.getDamageNumbers()) {
+            if (dmgNum.getText().getParent() == null) {
+                levelPane.getChildren().add(dmgNum.getText());
+            }
+        }
     }
 
     public void addUnit(CollisionUnit unit) {

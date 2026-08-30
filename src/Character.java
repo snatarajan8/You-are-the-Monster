@@ -89,7 +89,6 @@ public abstract class Character extends CollisionUnit {
         if (moveHorizontally == -1) {
             rectangle.setLocation((int) rectangle.getX() + velocity.horizontal, (int) rectangle.getY());
         } else {
-            velocity.vertical = moveVertically;
             int moveAmount = (int) Math.signum(velocity.horizontal) * moveHorizontally;
             rectangle.setLocation((int) rectangle.getX() + moveAmount, (int) rectangle.getY());
         }
@@ -102,7 +101,7 @@ public abstract class Character extends CollisionUnit {
             velocity.vertical = 0;
             velocityTime = 1;
         } else { //will move to ground
-            int moveAmount = (int) Math.signum(velocity.vertical) * moveHorizontally;
+            int moveAmount = (int) Math.signum(velocity.vertical) * moveVertically;
             rectangle.setLocation((int) rectangle.getX(), (int) rectangle.getY() + moveAmount);
         }
 

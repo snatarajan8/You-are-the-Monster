@@ -32,6 +32,8 @@ public class EnemyGuard extends Enemy {
         animation.addSequence(State.FACERIGHT, animArray("resources/player/FACERIGHT", 3));
         animation.addSequence(State.MOVELEFT, animArray("resources/player/MOVELEFT", 6));
         animation.addSequence(State.MOVERIGHT, animArray("resources/player/MOVERIGHT", 6));
+        animation.addSequence(State.FALLLEFT, animArray("resources/player/FACELEFT", 1));
+        animation.addSequence(State.FALLRIGHT, animArray("resources/player/FACERIGHT", 1));
     }
 
     @Override

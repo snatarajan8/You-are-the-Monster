@@ -37,6 +37,8 @@ public class EnemySkeleton extends Enemy {
         animation.addSequence(State.FACERIGHT, animArray("resources/skeleton/FACERIGHT", 3));
         animation.addSequence(State.MOVELEFT, animArray("resources/skeleton/MOVELEFT", 6));
         animation.addSequence(State.MOVERIGHT, animArray("resources/skeleton/MOVERIGHT", 6));
+        animation.addSequence(State.FALLLEFT, animArray("resources/skeleton/FACELEFT", 1));
+        animation.addSequence(State.FALLRIGHT, animArray("resources/skeleton/FACERIGHT", 1));
     }
 
     @Override

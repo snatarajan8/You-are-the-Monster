@@ -31,6 +31,8 @@ public class EnemyWerewolf extends Enemy {
         animation.addSequence(State.FACERIGHT, animArray("resources/werewolf/FACERIGHT", 3));
         animation.addSequence(State.MOVELEFT, animArray("resources/werewolf/MOVELEFT", 6));
         animation.addSequence(State.MOVERIGHT, animArray("resources/werewolf/MOVERIGHT", 6));
+        animation.addSequence(State.FALLLEFT, animArray("resources/werewolf/FACELEFT", 1));
+        animation.addSequence(State.FALLRIGHT, animArray("resources/werewolf/FACERIGHT", 1));
     }
 
     @Override

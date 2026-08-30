@@ -182,9 +182,9 @@ public abstract class Enemy extends Character {
         if (targetPlayer == null) return;
         
         if (targetPlayer.getRectangle().getX() < rectangle.getX()) {
-            moveHorizontal(true, true);
+            moveHorizontal(true, false);
         } else {
-            moveHorizontal(false, true);
+            moveHorizontal(false, false);
         }
     }
 
@@ -192,9 +192,9 @@ public abstract class Enemy extends Character {
         if (targetPlayer == null) return;
         
         if (targetPlayer.getRectangle().getX() < rectangle.getX()) {
-            moveHorizontal(false, true);
+            moveHorizontal(false, false);
         } else {
-            moveHorizontal(true, true);
+            moveHorizontal(true, false);
         }
     }
 

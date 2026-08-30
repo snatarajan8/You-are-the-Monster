@@ -28,8 +28,12 @@ public class EnemyBat extends Enemy {
 
     private void initAnimation() {
         animation = new SpriteAnimation();
+        animation.addSequence(State.FACELEFT, animArray("resources/Bat/MOVELEFT", 1));
+        animation.addSequence(State.FACERIGHT, animArray("resources/Bat/MOVERIGHT", 1));
         animation.addSequence(State.MOVELEFT, animArray("resources/Bat/MOVELEFT", 4));
         animation.addSequence(State.MOVERIGHT, animArray("resources/Bat/MOVERIGHT", 4));
+        animation.addSequence(State.FALLLEFT, animArray("resources/Bat/MOVELEFT", 1));
+        animation.addSequence(State.FALLRIGHT, animArray("resources/Bat/MOVERIGHT", 1));
     }
 
     @Override
@@ -44,9 +48,9 @@ public class EnemyBat extends Enemy {
         
         // Move back and forth
         if (patrolDirection > 0) {
-            moveHorizontal(false, true);
+            moveHorizontal(true, false);  // Move right
         } else {
-            moveHorizontal(true, true);
+            moveHorizontal(false, false);  // Move left
         }
         
         travelled += Math.abs(velocity.horizontal);
@@ -71,7 +75,13 @@ public class EnemyBat extends Enemy {
             return;
         }
         
-        moveTowardPlayer();
+        if (targetPlayer != null) {
+            if (targetPlayer.getRectangle().getX() < rectangle.getX()) {
+                moveHorizontal(true, false);  // Move left toward player
+            } else {
+                moveHorizontal(false, false);  // Move right toward player
+            }
+        }
         
         // Check if in attack range
         if (isPlayerInRange(attackRange)) {

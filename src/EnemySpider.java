@@ -27,9 +27,12 @@ public class EnemySpider extends Enemy {
 
     private void initAnimation() {
         animation = new SpriteAnimation();
-        // Spider uses bat sprites as placeholder
+        animation.addSequence(State.FACELEFT, animArray("resources/Bat/MOVELEFT", 1));
+        animation.addSequence(State.FACERIGHT, animArray("resources/Bat/MOVERIGHT", 1));
         animation.addSequence(State.MOVELEFT, animArray("resources/Bat/MOVELEFT", 4));
         animation.addSequence(State.MOVERIGHT, animArray("resources/Bat/MOVERIGHT", 4));
+        animation.addSequence(State.FALLLEFT, animArray("resources/Bat/MOVELEFT", 1));
+        animation.addSequence(State.FALLRIGHT, animArray("resources/Bat/MOVERIGHT", 1));
     }
 
     @Override
