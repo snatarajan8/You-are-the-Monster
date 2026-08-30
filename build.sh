@@ -65,7 +65,12 @@ if [ ! -d "$JAVAFX_DIR" ]; then
     mkdir -p "$JAVAFX_DIR"
     
     JAVAFX_VERSION="17.0.2"
-    JAVAFX_URL="https://download2.gluonhq.com/openjfx/${JAVAFX_VERSION}/openjfx-${JAVAFX_VERSION}_${JAVAFX_ARCH}_bin-sdk.zip"
+    case $OS in
+        Linux*)     JAVAFX_OS="linux";;
+        Darwin*)    JAVAFX_OS="macos";;
+        *)          JAVAFX_OS="linux";;
+    esac
+    JAVAFX_URL="https://download2.gluonhq.com/openjfx/${JAVAFX_VERSION}/openjfx-${JAVAFX_VERSION}_${JAVAFX_OS}-${JAVAFX_ARCH}_bin-sdk.zip"
     
     echo "Downloading from: $JAVAFX_URL"
     curl -L -o /tmp/javafx.zip "$JAVAFX_URL" 2>/dev/null
