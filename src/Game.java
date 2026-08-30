@@ -295,6 +295,12 @@ public class Game extends Application {
         difficultyManager.setDifficulty(DifficultyManager.Difficulty.values()[diff]);
         score = 0;
         titleScreen.setVisible(false);
+        int startLevel = Integer.getInteger("game.startLevel", 0);
+        if (DEBUG && startLevel > 0) {
+            levelManager.loadLevel(startLevel);
+            beginPlaying();
+            return;
+        }
         // opening cutscene, then load level 0
         pendingCutsceneAdvanceTo = 0;
         playCutscene(0);
@@ -325,6 +331,7 @@ public class Game extends Application {
     }
 
     private void gameOver() {
+        if (DEBUG) System.err.println("GAME OVER");
         state = GameState.GAME_OVER;
         audioManager.play("game_over");
         gameOverScreen.show();
@@ -405,13 +412,14 @@ public class Game extends Application {
         enemiesRemaining = 0;
 
         camera.setLevelSize(data.getLevelWidth(), data.getLevelHeight());
-        // tiled parallax backdrop, 1.5x native pixel scale so it repeats cleanly
-        double tileW = bgImage.getWidth() * 1.5;
-        double tileH = bgImage.getHeight() * 1.5;
+        // Parallax backdrop: one image-height tall (so the baked-in horizon never
+        // seams vertically), repeated horizontally across the whole level.
+        double tileW = bgImage.getWidth() * 2.0;
+        int levelH = Math.max(HEIGHT, data.getLevelHeight());
         int bw = Math.max(WIDTH, data.getLevelWidth()) + (int) tileW;
         bgRect.setWidth(bw);
-        bgRect.setHeight(Math.max(HEIGHT, (int) tileH));
-        bgRect.setFill(new ImagePattern(bgImage, 0, 0, tileW, tileH, false));
+        bgRect.setHeight(levelH);
+        bgRect.setFill(new ImagePattern(bgImage, 0, 0, tileW, levelH, false));
         applyAreaTint(data.getArea());
 
         if (player == null) {
@@ -523,6 +531,7 @@ public class Game extends Application {
     }
 
     public void onBossDefeated() {
+        if (DEBUG) System.err.println("BOSS DEFEATED -> ending");
         bossDefeated = true;
         // ending cutscene -> final victory screen
         pendingCutsceneAdvanceTo = -1;
