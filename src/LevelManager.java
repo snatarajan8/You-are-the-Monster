@@ -18,34 +18,34 @@ public class LevelManager {
 
     private void initializeLevelPaths() {
         // Area 1: Dark Forest
-        levelPaths.add("src/levels/1_1.json");
-        levelPaths.add("src/levels/1_2.json");
-        levelPaths.add("src/levels/1_3.json");
+        levelPaths.add("levels/1_1.json");
+        levelPaths.add("levels/1_2.json");
+        levelPaths.add("levels/1_3.json");
         
         // Area 2: Abandoned Village
-        levelPaths.add("src/levels/2_1.json");
-        levelPaths.add("src/levels/2_2.json");
-        levelPaths.add("src/levels/2_3.json");
+        levelPaths.add("levels/2_1.json");
+        levelPaths.add("levels/2_2.json");
+        levelPaths.add("levels/2_3.json");
         
         // Area 3: Haunted Graveyard
-        levelPaths.add("src/levels/3_1.json");
-        levelPaths.add("src/levels/3_2.json");
-        levelPaths.add("src/levels/3_3.json");
+        levelPaths.add("levels/3_1.json");
+        levelPaths.add("levels/3_2.json");
+        levelPaths.add("levels/3_3.json");
         
         // Area 4: Cursed Caves
-        levelPaths.add("src/levels/4_1.json");
-        levelPaths.add("src/levels/4_2.json");
-        levelPaths.add("src/levels/4_3.json");
+        levelPaths.add("levels/4_1.json");
+        levelPaths.add("levels/4_2.json");
+        levelPaths.add("levels/4_3.json");
         
         // Area 5: Castle Walls
-        levelPaths.add("src/levels/5_1.json");
-        levelPaths.add("src/levels/5_2.json");
-        levelPaths.add("src/levels/5_3.json");
+        levelPaths.add("levels/5_1.json");
+        levelPaths.add("levels/5_2.json");
+        levelPaths.add("levels/5_3.json");
         
         // Area 6: Throne Room
-        levelPaths.add("src/levels/6_1.json");
-        levelPaths.add("src/levels/6_2.json");
-        levelPaths.add("src/levels/6_3.json");
+        levelPaths.add("levels/6_1.json");
+        levelPaths.add("levels/6_2.json");
+        levelPaths.add("levels/6_3.json");
     }
 
     public boolean loadLevel(int index) {

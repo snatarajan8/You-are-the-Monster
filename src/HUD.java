@@ -19,7 +19,7 @@ public class HUD {
         
         // Health bar background
         healthBarBackground = new Rectangle(HUD_X, HUD_Y, BAR_WIDTH, BAR_HEIGHT);
-        healthBarBackground.setFill(Color.DARK_GRAY);
+        healthBarBackground.setFill(Color.DARKGRAY);
         healthBarBackground.setStroke(Color.BLACK);
         healthBarBackground.setStrokeWidth(2);
         

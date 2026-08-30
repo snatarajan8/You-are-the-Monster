@@ -240,6 +240,9 @@ public class Game extends Application {
         currentState = GameState.PLAYING;
         levelPane.getChildren().clear();
         initUnits();
+        levelPane.getChildren().clear();
+        units.clear();
+        characters.clear();
         levelManager.loadLevel(0);
     }
 

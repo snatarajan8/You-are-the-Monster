@@ -12,7 +12,7 @@ public class CutsceneSystem {
     private Text speakerText;
     private Text dialogueText;
     private Text continueText;
-    private List<CutsceneData> cutscenes;
+    private List<List<CutsceneData>> cutscenes;
     private int currentCutsceneIndex;
     private int currentLineIndex;
     private boolean active;
