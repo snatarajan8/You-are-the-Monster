@@ -23,7 +23,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
       
       - name: Build Fat JAR
-        run: ./gradlew shadowJar
+        run: gradle shadowJar
       
       - name: Create Windows Executable with jpackage
         run: |
@@ -50,7 +50,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
       
       - name: Build Fat JAR
-        run: ./gradlew shadowJar
+        run: gradle shadowJar
       
       - name: Create macOS App with jpackage
         run: |
@@ -77,7 +77,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
       
       - name: Build Fat JAR
-        run: ./gradlew shadowJar
+        run: gradle shadowJar
       
       - name: Create Linux App with jpackage
         run: |

@@ -31,7 +31,7 @@ public class PauseMenu {
         
         // Controls text
         controlsText = new Text(width/2 - 200, height/2 + 50, 
-            "Controls: Arrow Keys = Move, UP = Jump, Click = Attack");
+            "Arrow Keys / WASD = Move    UP = Jump    Z / Click = Attack");
         controlsText.setFill(Color.GRAY);
         controlsText.setFont(Font.font("Monospace", 14));
         

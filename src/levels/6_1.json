@@ -3,39 +3,136 @@
   "area": 6,
   "levelNumber": 1,
   "background": "resources/background layers.png",
-  "width": 1400,
-  "height": 800,
+  "width": 3900,
+  "height": 704,
   "playerStart": {
-    "x": 100,
-    "y": 700
+    "x": 90,
+    "y": 588
   },
   "exit": {
-    "x": 1300,
-    "y": 200
+    "x": 3750,
+    "y": 576
   },
   "walls": [
-    {"x": 0, "y": 744, "width": 1400, "height": 40},
-    {"x": 0, "y": 0, "width": 160, "height": 288},
-    {"x": 0, "y": 288, "width": 96, "height": 64},
-    {"x": 0, "y": 352, "width": 32, "height": 448},
-    {"x": 1320, "y": 0, "width": 80, "height": 288},
-    {"x": 1368, "y": 288, "width": 32, "height": 512},
-    {"x": 150, "y": 650, "width": 200, "height": 32},
-    {"x": 400, "y": 580, "width": 150, "height": 32},
-    {"x": 650, "y": 500, "width": 120, "height": 32},
-    {"x": 850, "y": 430, "width": 150, "height": 32},
-    {"x": 1050, "y": 360, "width": 120, "height": 32},
-    {"x": 1200, "y": 280, "width": 150, "height": 32}
+    {
+      "x": 0,
+      "y": 648,
+      "width": 3900,
+      "height": 60
+    },
+    {
+      "x": -20,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 3900,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 360,
+      "y": 518,
+      "width": 207,
+      "height": 26
+    },
+    {
+      "x": 953,
+      "y": 518,
+      "width": 205,
+      "height": 26
+    },
+    {
+      "x": 1266,
+      "y": 518,
+      "width": 161,
+      "height": 26
+    },
+    {
+      "x": 1527,
+      "y": 518,
+      "width": 218,
+      "height": 26
+    },
+    {
+      "x": 1830,
+      "y": 428,
+      "width": 120,
+      "height": 26
+    },
+    {
+      "x": 2057,
+      "y": 498,
+      "width": 221,
+      "height": 26
+    },
+    {
+      "x": 2360,
+      "y": 498,
+      "width": 133,
+      "height": 26
+    },
+    {
+      "x": 2840,
+      "y": 518,
+      "width": 239,
+      "height": 26
+    },
+    {
+      "x": 3152,
+      "y": 518,
+      "width": 214,
+      "height": 26
+    }
   ],
   "enemies": [
-    {"type": "knight", "x": 250, "y": 620, "patrol": 200},
-    {"type": "knight", "x": 500, "y": 550, "patrol": 150},
-    {"type": "knight", "x": 750, "y": 470, "patrol": 150},
-    {"type": "guard", "x": 1000, "y": 330, "patrol": 200}
+    {
+      "type": "knight",
+      "x": 463,
+      "y": 474,
+      "patrol": 147
+    },
+    {
+      "type": "knight",
+      "x": 649,
+      "y": 602,
+      "patrol": 225
+    },
+    {
+      "type": "knight",
+      "x": 2578,
+      "y": 602,
+      "patrol": 171
+    },
+    {
+      "type": "knight",
+      "x": 3479,
+      "y": 602,
+      "patrol": 174
+    }
   ],
   "items": [
-    {"type": "meat", "x": 200, "y": 620},
-    {"type": "meat", "x": 550, "y": 550},
-    {"type": "meat", "x": 900, "y": 400}
+    {
+      "type": "meat",
+      "x": 1055,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 2167,
+      "y": 458
+    },
+    {
+      "type": "meat",
+      "x": 2959,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 3259,
+      "y": 478
+    }
   ]
 }

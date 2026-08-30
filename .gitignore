@@ -30,3 +30,6 @@ build/
 *.dmg
 *.deb
 *.rpm
+
+# JavaFX SDK + JSON jar downloaded by build.sh
+lib/

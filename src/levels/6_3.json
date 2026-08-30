@@ -1,38 +1,79 @@
 {
-  "name": "Throne Room - Final Battle",
+  "name": "Throne Room - The Vampire Lord",
   "area": 6,
   "levelNumber": 3,
   "background": "resources/background layers.png",
-  "width": 1280,
-  "height": 800,
+  "width": 1600,
+  "height": 704,
   "playerStart": {
-    "x": 100,
-    "y": 700
+    "x": 90,
+    "y": 588
   },
   "exit": {
-    "x": 1150,
-    "y": 200
+    "x": 1450,
+    "y": 576
   },
   "walls": [
-    {"x": 0, "y": 744, "width": 1280, "height": 40},
-    {"x": 0, "y": 0, "width": 160, "height": 288},
-    {"x": 0, "y": 288, "width": 96, "height": 64},
-    {"x": 0, "y": 352, "width": 32, "height": 448},
-    {"x": 1200, "y": 0, "width": 80, "height": 288},
-    {"x": 1248, "y": 288, "width": 32, "height": 512},
-    {"x": 150, "y": 650, "width": 200, "height": 32},
-    {"x": 400, "y": 580, "width": 150, "height": 32},
-    {"x": 600, "y": 500, "width": 120, "height": 32},
-    {"x": 780, "y": 430, "width": 150, "height": 32},
-    {"x": 980, "y": 360, "width": 120, "height": 32},
-    {"x": 1100, "y": 280, "width": 150, "height": 32}
+    {
+      "x": 0,
+      "y": 648,
+      "width": 1600,
+      "height": 60
+    },
+    {
+      "x": -20,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 1600,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 240,
+      "y": 498,
+      "width": 180,
+      "height": 24
+    },
+    {
+      "x": 1180,
+      "y": 498,
+      "width": 180,
+      "height": 24
+    },
+    {
+      "x": 690,
+      "y": 418,
+      "width": 220,
+      "height": 24
+    }
   ],
   "enemies": [
-    {"type": "vampirelord", "x": 600, "y": 500, "patrol": 0}
+    {
+      "type": "vampirelord",
+      "x": 800,
+      "y": 528,
+      "patrol": 0
+    }
   ],
   "items": [
-    {"type": "meat", "x": 200, "y": 620},
-    {"type": "meat", "x": 450, "y": 550},
-    {"type": "meat", "x": 830, "y": 400}
+    {
+      "type": "meat",
+      "x": 300,
+      "y": 458
+    },
+    {
+      "type": "meat",
+      "x": 1270,
+      "y": 458
+    },
+    {
+      "type": "meat",
+      "x": 800,
+      "y": 378
+    }
   ]
 }

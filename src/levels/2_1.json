@@ -1,38 +1,98 @@
 {
-  "name": "Abandoned Village - Outskirts",
+  "name": "Abandoned Village - Entrance",
   "area": 2,
   "levelNumber": 1,
   "background": "resources/background layers.png",
-  "width": 1400,
+  "width": 2860,
   "height": 704,
   "playerStart": {
-    "x": 100,
-    "y": 500
+    "x": 90,
+    "y": 588
   },
   "exit": {
-    "x": 1300,
-    "y": 500
+    "x": 2710,
+    "y": 576
   },
   "walls": [
-    {"x": 0, "y": 644, "width": 1400, "height": 40},
-    {"x": 0, "y": 0, "width": 160, "height": 288},
-    {"x": 0, "y": 288, "width": 96, "height": 64},
-    {"x": 0, "y": 352, "width": 32, "height": 320},
-    {"x": 1320, "y": 0, "width": 80, "height": 320},
-    {"x": 1368, "y": 320, "width": 32, "height": 384},
-    {"x": 200, "y": 550, "width": 200, "height": 32},
-    {"x": 500, "y": 480, "width": 150, "height": 32},
-    {"x": 750, "y": 420, "width": 120, "height": 32},
-    {"x": 950, "y": 520, "width": 180, "height": 32},
-    {"x": 1150, "y": 450, "width": 150, "height": 32}
+    {
+      "x": 0,
+      "y": 648,
+      "width": 2860,
+      "height": 60
+    },
+    {
+      "x": -20,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 2860,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 360,
+      "y": 518,
+      "width": 211,
+      "height": 26
+    },
+    {
+      "x": 645,
+      "y": 518,
+      "width": 208,
+      "height": 26
+    },
+    {
+      "x": 967,
+      "y": 518,
+      "width": 198,
+      "height": 26
+    },
+    {
+      "x": 1528,
+      "y": 518,
+      "width": 150,
+      "height": 26
+    },
+    {
+      "x": 2056,
+      "y": 518,
+      "width": 172,
+      "height": 26
+    },
+    {
+      "x": 2344,
+      "y": 518,
+      "width": 215,
+      "height": 26
+    }
   ],
   "enemies": [
-    {"type": "guard", "x": 300, "y": 520, "patrol": 250},
-    {"type": "guard", "x": 600, "y": 550, "patrol": 200},
-    {"type": "guard", "x": 1000, "y": 490, "patrol": 250}
+    {
+      "type": "bat",
+      "x": 1270,
+      "y": 602,
+      "patrol": 141
+    },
+    {
+      "type": "bat",
+      "x": 1754,
+      "y": 602,
+      "patrol": 237
+    }
   ],
   "items": [
-    {"type": "meat", "x": 250, "y": 520},
-    {"type": "meat", "x": 800, "y": 390}
+    {
+      "type": "meat",
+      "x": 465,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 2451,
+      "y": 478
+    }
   ]
 }

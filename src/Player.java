@@ -1,147 +1,113 @@
-import javafx.scene.Scene;
-import javafx.scene.image.ImageView;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.paint.Color;
+
+import javafx.scene.Node;
 
 public class Player extends Character {
 
-    public static final int PLAYER_WIDTH = 32;
-    public static final int PLAYER_HEIGHT = 32;
-    public static final int ATTACK_SPACE = 10;
-    private static final int MAX_HEALTH = 100;
-    private static final int ATTACK_DAMAGE = 10;
+    public static final int PLAYER_WIDTH = 30;
+    public static final int PLAYER_HEIGHT = 44;
+    public static final int ATTACK_SPACE = 6;
 
-    boolean secondJump;
-    private List<Attack> activeAttacks;
+    private int maxHealth = 100;
+    private static final int ATTACK_COOLDOWN_FRAMES = 10;
+
+    private boolean secondJumpAvailable;
+    private final List<Attack> activeAttacks = new ArrayList<>();
     private int attackCooldown;
-    private static final int ATTACK_COOLDOWN_FRAMES = 8;
-    private List<DamageNumber> damageNumbers;
 
-    public Player (Game game, int x, int y) {
+    public Player(Game game, int x, int y) {
         super(game, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
-        health = MAX_HEALTH;
-        initAnimation();
-        secondJump = false;
-        activeAttacks = new ArrayList<>();
-        attackCooldown = 0;
-        damageNumbers = new ArrayList<>();
+        movementFactor = 6;
+        jumpFactor = -15;
+        health = maxHealth;
+        loadAnim("resources/player", 6, 3, "FALL");
     }
 
-    public ImageView getImageView() {
+    @Override
+    public Node getNode() {
         return animation.getImageView();
     }
 
-    public int getHealth() {
-        return health;
+    public int getHealth() { return health; }
+
+    public int getMaxHealth() { return maxHealth; }
+
+    public void setMaxHealth(int max) {
+        this.maxHealth = max;
+        this.health = max;
     }
 
-    public int getMaxHealth() {
-        return MAX_HEALTH;
+    public void resetForLevel() {
+        health = maxHealth;
+        velocity.horizontal = 0;
+        velocity.vertical = 0;
+        inputDir = 0;
+        secondJumpAvailable = false;
+        invincible = false;
+        invincibilityTimer = 0;
+        for (Attack a : activeAttacks) game.removeUnit(a);
+        activeAttacks.clear();
     }
 
     public void heal(int amount) {
-        health = Math.min(health + amount, MAX_HEALTH);
+        health = Math.min(health + amount, maxHealth);
     }
 
-    private void initAnimation() {
-        animation = new SpriteAnimation();
-        animation.addSequence(State.FACELEFT, animArray("resources/player/FACELEFT", 3));
-        animation.addSequence(State.FACERIGHT, animArray("resources/player/FACERIGHT", 3));
-        animation.addSequence(State.MOVELEFT, animArray("resources/player/MOVELEFT", 6));
-        animation.addSequence(State.MOVERIGHT, animArray("resources/player/MOVERIGHT", 6));
-        animation.addSequence(State.FALLLEFT, animArray("resources/player/FALLLEFT", 1));
-        animation.addSequence(State.FALLRIGHT, animArray("resources/player/FALLRIGHT", 1));
-    }
-
+    @Override
     public void jump() {
-        boolean ground = iterateThroughCollision("down", 0) == 0;
-        if (ground || secondJump) {
-            if (ground) {
-                velocity.vertical = jumpFactor;
-                secondJump = true;
-            } else if (secondJump) {
-                velocity.vertical = jumpFactor;
-                secondJump = false;
-            }
-            if (velocity.horizontal < 0) {
-                state = State.FALLLEFT;
-            } else if (velocity.horizontal > 0) {
-                state = State.FALLRIGHT;
-            } else {
-                state = (state == State.FACELEFT) ? State.FALLLEFT : State.FALLRIGHT;
-            }
+        if (isOnGround()) {
+            velocity.vertical = jumpFactor;
+            secondJumpAvailable = true;
+            game.audio().play("jump");
+        } else if (secondJumpAvailable) {
+            velocity.vertical = jumpFactor;
+            secondJumpAvailable = false;
+            game.audio().play("jump");
         }
     }
 
     public void attack() {
-        if (attackCooldown > 0) {
-            return;
-        }
+        if (attackCooldown > 0) return;
+        attackCooldown = ATTACK_COOLDOWN_FRAMES;
+        game.audio().play("attack");
 
-        Attack attack;
-        if (left) {
-            attack = new Attack((int) rectangle.getX() - ATTACK_SPACE, (int) rectangle.getY());
-        } else {
-            attack = new Attack((int) rectangle.getX() + (int) rectangle.getWidth() +
-                ATTACK_SPACE, (int) rectangle.getY());
-        }
-        
-        boolean hitEnemy = false;
-        for (CollisionUnit item : units) {
-            if (attack.checkOverlap(item, "left", 0) != -1) {
-                if (item instanceof Enemy && !((Enemy) item).isDead()) {
-                    Enemy enemy = (Enemy) item;
-                    enemy.takeDamage(ATTACK_DAMAGE);
-                    hitEnemy = true;
-                    
-                    // Create damage number
-                    DamageNumber dmgNum = new DamageNumber(
-                        enemy.getRectangle().getX() + enemy.getRectangle().getWidth()/2,
-                        enemy.getRectangle().getY(),
-                        ATTACK_DAMAGE,
-                        Color.RED
-                    );
-                    damageNumbers.add(dmgNum);
-                }
-            }
-        }
-        
+        int ax = left
+            ? (int) rectangle.getX() - Attack.ATTACK_WIDTH + ATTACK_SPACE
+            : (int) rectangle.getX() + (int) rectangle.getWidth() - ATTACK_SPACE;
+        int ay = (int) rectangle.getY() + (int) rectangle.getHeight() / 2 - Attack.ATTACK_HEIGHT / 2;
+
+        Attack attack = new Attack(game, ax, ay, left);
         game.addUnit(attack);
         activeAttacks.add(attack);
-        attackCooldown = ATTACK_COOLDOWN_FRAMES;
     }
 
     @Override
     public void update() {
         super.update();
-        
-        // Update cooldowns
-        if (attackCooldown > 0) {
-            attackCooldown--;
+
+        if (isOnGround() && velocity.vertical >= 0) {
+            secondJumpAvailable = false;
         }
-        
-        // Update active attacks
-        List<Attack> toRemove = new ArrayList<>();
-        for (Attack attack : activeAttacks) {
-            if (!attack.update()) {
-                toRemove.add(attack);
-                game.removeUnit(attack);
-            }
-        }
-        activeAttacks.removeAll(toRemove);
-        
-        // Update damage numbers
-        List<DamageNumber> dmgToRemove = new ArrayList<>();
-        for (DamageNumber dmgNum : damageNumbers) {
-            if (!dmgNum.update()) {
-                dmgToRemove.add(dmgNum);
-            }
-        }
-        damageNumbers.removeAll(dmgToRemove);
+        if (attackCooldown > 0) attackCooldown--;
+
+        activeAttacks.removeIf(attack -> {
+            attack.getRectangle().setLocation(
+                left ? (int) rectangle.getX() - Attack.ATTACK_WIDTH + ATTACK_SPACE
+                     : (int) rectangle.getX() + (int) rectangle.getWidth() - ATTACK_SPACE,
+                (int) rectangle.getY() + (int) rectangle.getHeight() / 2 - Attack.ATTACK_HEIGHT / 2);
+            boolean alive = attack.update();
+            if (!alive) game.removeUnit(attack);
+            return !alive;
+        });
+
     }
 
-    public List<DamageNumber> getDamageNumbers() {
-        return damageNumbers;
+    @Override
+    public void damageHealth(int damage) {
+        if (invincible) return;
+        int before = health;
+        super.damageHealth(damage);
+        if (health < before) game.audio().play("hurt");
     }
 }

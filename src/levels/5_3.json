@@ -1,42 +1,134 @@
 {
-  "name": "Castle Walls - Castle Keep",
+  "name": "Castle Walls - Heart",
   "area": 5,
   "levelNumber": 3,
   "background": "resources/background layers.png",
-  "width": 1280,
-  "height": 800,
+  "width": 4320,
+  "height": 704,
   "playerStart": {
-    "x": 100,
-    "y": 700
+    "x": 90,
+    "y": 588
   },
   "exit": {
-    "x": 1150,
-    "y": 200
+    "x": 4170,
+    "y": 576
   },
   "walls": [
-    {"x": 0, "y": 744, "width": 1280, "height": 40},
-    {"x": 0, "y": 0, "width": 160, "height": 288},
-    {"x": 0, "y": 288, "width": 96, "height": 64},
-    {"x": 0, "y": 352, "width": 32, "height": 448},
-    {"x": 1200, "y": 0, "width": 80, "height": 288},
-    {"x": 1248, "y": 288, "width": 32, "height": 512},
-    {"x": 150, "y": 650, "width": 200, "height": 32},
-    {"x": 400, "y": 580, "width": 150, "height": 32},
-    {"x": 600, "y": 500, "width": 120, "height": 32},
-    {"x": 780, "y": 430, "width": 150, "height": 32},
-    {"x": 980, "y": 360, "width": 120, "height": 32},
-    {"x": 1100, "y": 280, "width": 150, "height": 32}
+    {
+      "x": 0,
+      "y": 648,
+      "width": 4320,
+      "height": 60
+    },
+    {
+      "x": -20,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 4320,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 662,
+      "y": 518,
+      "width": 125,
+      "height": 26
+    },
+    {
+      "x": 858,
+      "y": 518,
+      "width": 214,
+      "height": 26
+    },
+    {
+      "x": 1177,
+      "y": 518,
+      "width": 202,
+      "height": 26
+    },
+    {
+      "x": 1497,
+      "y": 518,
+      "width": 211,
+      "height": 26
+    },
+    {
+      "x": 2328,
+      "y": 518,
+      "width": 208,
+      "height": 26
+    },
+    {
+      "x": 2620,
+      "y": 518,
+      "width": 131,
+      "height": 26
+    },
+    {
+      "x": 3124,
+      "y": 518,
+      "width": 141,
+      "height": 26
+    },
+    {
+      "x": 3370,
+      "y": 518,
+      "width": 238,
+      "height": 26
+    },
+    {
+      "x": 3714,
+      "y": 518,
+      "width": 194,
+      "height": 26
+    }
   ],
   "enemies": [
-    {"type": "knight", "x": 250, "y": 620, "patrol": 150},
-    {"type": "knight", "x": 500, "y": 550, "patrol": 100},
-    {"type": "knight", "x": 700, "y": 470, "patrol": 100},
-    {"type": "knight", "x": 900, "y": 400, "patrol": 100},
-    {"type": "werewolf", "x": 1050, "y": 330, "patrol": 200}
+    {
+      "type": "knight",
+      "x": 360,
+      "y": 602,
+      "patrol": 157
+    },
+    {
+      "type": "guard",
+      "x": 1808,
+      "y": 602,
+      "patrol": 149
+    },
+    {
+      "type": "knight",
+      "x": 2083,
+      "y": 602,
+      "patrol": 142
+    },
+    {
+      "type": "guard",
+      "x": 2868,
+      "y": 602,
+      "patrol": 238
+    },
+    {
+      "type": "knight",
+      "x": 3811,
+      "y": 474,
+      "patrol": 134
+    }
   ],
   "items": [
-    {"type": "meat", "x": 200, "y": 620},
-    {"type": "meat", "x": 450, "y": 550},
-    {"type": "meat", "x": 830, "y": 400}
+    {
+      "type": "meat",
+      "x": 724,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 2685,
+      "y": 478
+    }
   ]
 }

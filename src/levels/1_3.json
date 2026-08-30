@@ -1,42 +1,126 @@
 {
-  "name": "Dark Forest - Ancient Tree",
+  "name": "Dark Forest - Heart",
   "area": 1,
   "levelNumber": 3,
   "background": "resources/background layers.png",
-  "width": 1280,
-  "height": 800,
+  "width": 3280,
+  "height": 704,
   "playerStart": {
-    "x": 100,
-    "y": 700
+    "x": 90,
+    "y": 588
   },
   "exit": {
-    "x": 1150,
-    "y": 200
+    "x": 3130,
+    "y": 576
   },
   "walls": [
-    {"x": 0, "y": 744, "width": 1280, "height": 40},
-    {"x": 0, "y": 0, "width": 160, "height": 288},
-    {"x": 0, "y": 288, "width": 96, "height": 64},
-    {"x": 0, "y": 352, "width": 32, "height": 448},
-    {"x": 1200, "y": 0, "width": 80, "height": 288},
-    {"x": 1248, "y": 288, "width": 32, "height": 512},
-    {"x": 100, "y": 650, "width": 200, "height": 32},
-    {"x": 350, "y": 580, "width": 150, "height": 32},
-    {"x": 550, "y": 500, "width": 120, "height": 32},
-    {"x": 720, "y": 430, "width": 150, "height": 32},
-    {"x": 920, "y": 360, "width": 120, "height": 32},
-    {"x": 1080, "y": 280, "width": 150, "height": 32}
+    {
+      "x": 0,
+      "y": 648,
+      "width": 3280,
+      "height": 60
+    },
+    {
+      "x": -20,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 3280,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 360,
+      "y": 518,
+      "width": 178,
+      "height": 26
+    },
+    {
+      "x": 653,
+      "y": 428,
+      "width": 214,
+      "height": 26
+    },
+    {
+      "x": 975,
+      "y": 358,
+      "width": 130,
+      "height": 26
+    },
+    {
+      "x": 1206,
+      "y": 448,
+      "width": 133,
+      "height": 26
+    },
+    {
+      "x": 1423,
+      "y": 518,
+      "width": 230,
+      "height": 26
+    },
+    {
+      "x": 1749,
+      "y": 518,
+      "width": 193,
+      "height": 26
+    },
+    {
+      "x": 2370,
+      "y": 518,
+      "width": 233,
+      "height": 26
+    },
+    {
+      "x": 2706,
+      "y": 448,
+      "width": 226,
+      "height": 26
+    }
   ],
   "enemies": [
-    {"type": "skeleton", "x": 200, "y": 620, "patrol": 150},
-    {"type": "skeleton", "x": 450, "y": 550, "patrol": 100},
-    {"type": "skeleton", "x": 650, "y": 470, "patrol": 100},
-    {"type": "skeleton", "x": 820, "y": 400, "patrol": 100},
-    {"type": "werewolf", "x": 1000, "y": 330, "patrol": 200}
+    {
+      "type": "bat",
+      "x": 760,
+      "y": 384,
+      "patrol": 154
+    },
+    {
+      "type": "bat",
+      "x": 1845,
+      "y": 474,
+      "patrol": 133
+    },
+    {
+      "type": "werewolf",
+      "x": 2054,
+      "y": 602,
+      "patrol": 167
+    }
   ],
   "items": [
-    {"type": "meat", "x": 150, "y": 620},
-    {"type": "meat", "x": 400, "y": 550},
-    {"type": "meat", "x": 770, "y": 400}
+    {
+      "type": "meat",
+      "x": 1040,
+      "y": 318
+    },
+    {
+      "type": "meat",
+      "x": 1272,
+      "y": 408
+    },
+    {
+      "type": "meat",
+      "x": 1538,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 2486,
+      "y": 478
+    }
   ]
 }

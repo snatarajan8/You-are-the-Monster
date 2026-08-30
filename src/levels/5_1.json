@@ -1,41 +1,116 @@
 {
-  "name": "Castle Walls - Outer Walls",
+  "name": "Castle Walls - Entrance",
   "area": 5,
   "levelNumber": 1,
   "background": "resources/background layers.png",
-  "width": 1400,
-  "height": 800,
+  "width": 3640,
+  "height": 704,
   "playerStart": {
-    "x": 100,
-    "y": 700
+    "x": 90,
+    "y": 588
   },
   "exit": {
-    "x": 1300,
-    "y": 200
+    "x": 3490,
+    "y": 576
   },
   "walls": [
-    {"x": 0, "y": 744, "width": 1400, "height": 40},
-    {"x": 0, "y": 0, "width": 160, "height": 288},
-    {"x": 0, "y": 288, "width": 96, "height": 64},
-    {"x": 0, "y": 352, "width": 32, "height": 448},
-    {"x": 1320, "y": 0, "width": 80, "height": 288},
-    {"x": 1368, "y": 288, "width": 32, "height": 512},
-    {"x": 150, "y": 650, "width": 200, "height": 32},
-    {"x": 400, "y": 580, "width": 150, "height": 32},
-    {"x": 650, "y": 500, "width": 120, "height": 32},
-    {"x": 850, "y": 430, "width": 150, "height": 32},
-    {"x": 1050, "y": 360, "width": 120, "height": 32},
-    {"x": 1200, "y": 280, "width": 150, "height": 32}
+    {
+      "x": 0,
+      "y": 648,
+      "width": 3640,
+      "height": 60
+    },
+    {
+      "x": -20,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 3640,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 360,
+      "y": 518,
+      "width": 156,
+      "height": 26
+    },
+    {
+      "x": 626,
+      "y": 448,
+      "width": 166,
+      "height": 26
+    },
+    {
+      "x": 1173,
+      "y": 518,
+      "width": 206,
+      "height": 26
+    },
+    {
+      "x": 1791,
+      "y": 518,
+      "width": 134,
+      "height": 26
+    },
+    {
+      "x": 2639,
+      "y": 518,
+      "width": 190,
+      "height": 26
+    },
+    {
+      "x": 2929,
+      "y": 518,
+      "width": 227,
+      "height": 26
+    }
   ],
   "enemies": [
-    {"type": "knight", "x": 250, "y": 620, "patrol": 200},
-    {"type": "knight", "x": 500, "y": 550, "patrol": 150},
-    {"type": "knight", "x": 750, "y": 470, "patrol": 150},
-    {"type": "guard", "x": 1000, "y": 330, "patrol": 200}
+    {
+      "type": "guard",
+      "x": 709,
+      "y": 404,
+      "patrol": 106
+    },
+    {
+      "type": "knight",
+      "x": 895,
+      "y": 602,
+      "patrol": 157
+    },
+    {
+      "type": "knight",
+      "x": 1498,
+      "y": 602,
+      "patrol": 167
+    },
+    {
+      "type": "guard",
+      "x": 2044,
+      "y": 602,
+      "patrol": 199
+    },
+    {
+      "type": "guard",
+      "x": 2340,
+      "y": 602,
+      "patrol": 149
+    }
   ],
   "items": [
-    {"type": "meat", "x": 200, "y": 620},
-    {"type": "meat", "x": 550, "y": 550},
-    {"type": "meat", "x": 900, "y": 400}
+    {
+      "type": "meat",
+      "x": 438,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 1929,
+      "y": 602
+    }
   ]
 }

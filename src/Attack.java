@@ -1,40 +1,66 @@
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import java.util.HashSet;
+import java.util.Set;
 
+import javafx.scene.Node;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
+
+/**
+ * The player's claw swipe. Lives for a handful of ticks as a real hitbox that
+ * damages each enemy once, and draws a visible arc so the swing reads on screen.
+ */
 public class Attack extends CollisionUnit {
 
-    public static final int ATTACK_WIDTH = 30;
-    public static final int ATTACK_HEIGHT = 20;
-    public static final int ATTACK_DURATION = 4; // frames (200ms at 50ms tick)
+    public static final int ATTACK_WIDTH = 46;
+    public static final int ATTACK_HEIGHT = 40;
+    private static final int LIFETIME = 6;
+    private static final int DAMAGE = 15;
 
-    private ImageView view;
-    private int frameCount;
-    private boolean active;
+    private final Game game;
+    private final boolean facingLeft;
+    private final Arc visual;
+    private final Set<Enemy> alreadyHit = new HashSet<>();
+    private int frame;
 
-    public Attack(int x, int y) {
+    public Attack(Game game, int x, int y, boolean facingLeft) {
         super(x, y, ATTACK_WIDTH, ATTACK_HEIGHT);
-        Image image = new Image(getClass().getResource("resources/player/FACERIGHT1.png").toExternalForm());
-        view = new ImageView(image);
-        view.setFitWidth(ATTACK_WIDTH);
-        view.setFitHeight(ATTACK_HEIGHT);
-        frameCount = 0;
-        active = true;
+        this.game = game;
+        this.facingLeft = facingLeft;
+
+        visual = new Arc(ATTACK_WIDTH / 2.0, ATTACK_HEIGHT / 2.0,
+            ATTACK_WIDTH / 2.0, ATTACK_HEIGHT / 2.0,
+            facingLeft ? 90 : -90, 180);
+        visual.setType(ArcType.ROUND);
+        visual.setFill(Color.web("#e8e8ff", 0.55));
+        visual.setStroke(Color.web("#ffffff", 0.8));
+        visual.setStrokeWidth(2);
+        visual.setMouseTransparent(true);
     }
 
-    public ImageView getImageView() {
-        return view;
+    @Override
+    public Node getNode() {
+        return visual;
     }
 
+    /** @return true while the hitbox is still alive. */
     public boolean update() {
-        frameCount++;
-        return frameCount < ATTACK_DURATION && active;
+        frame++;
+        for (CollisionUnit unit : game.getCollisionSet().toArray(new CollisionUnit[0])) {
+            if (unit instanceof Enemy) {
+                Enemy e = (Enemy) unit;
+                if (!e.isDead() && !alreadyHit.contains(e) && rectangle.intersects(e.getRectangle())) {
+                    e.takeDamage(DAMAGE);
+                    alreadyHit.add(e);
+                    game.onPlayerHitEnemy(e, DAMAGE);
+                }
+            }
+        }
+        visual.setOpacity(Math.max(0, 1.0 - (double) frame / LIFETIME));
+        return frame < LIFETIME;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public boolean isActive() {
-        return active;
+    public boolean isFacingLeft() {
+        return facingLeft;
     }
 }

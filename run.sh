@@ -61,10 +61,10 @@ if [ ! -d "$JAVAFX_MODS" ]; then
 fi
 
 # Build classpath
-CP="build/classes:$JAVAFX_MODS/*"
+CP="build/classes"
 if [ -f "lib/json.jar" ]; then
     CP="$CP:lib/json.jar"
 fi
 
 echo "Starting game..."
-java --module-path "$JAVAFX_MODS" --add-modules javafx.controls,javafx.fxml -cp "build/classes:lib/json.jar" Game
+java --module-path "$JAVAFX_MODS" --add-modules javafx.controls,javafx.fxml -cp "$CP" Game

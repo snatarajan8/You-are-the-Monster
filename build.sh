@@ -140,7 +140,7 @@ fi
 echo ""
 echo "Compiling..."
 find src -name "*.java" > /tmp/sources.txt
-javac -cp "$CP" -d build/classes @/tmp/sources.txt 2>&1
+javac -encoding UTF-8 -cp "$CP" -d build/classes @/tmp/sources.txt 2>&1
 
 if [ $? -ne 0 ]; then
     echo ""
@@ -150,9 +150,7 @@ fi
 
 echo "Copying resources..."
 cp -r src/resources build/classes/
-cp src/*.json build/classes/ 2>/dev/null || true
 cp -r src/levels build/classes/ 2>/dev/null || true
-cp src/GameBackground.fxml build/classes/ 2>/dev/null || true
 
 echo ""
 echo "Build successful!"

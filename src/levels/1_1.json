@@ -3,33 +3,102 @@
   "area": 1,
   "levelNumber": 1,
   "background": "resources/background layers.png",
-  "width": 1280,
+  "width": 2600,
   "height": 704,
   "playerStart": {
-    "x": 100,
-    "y": 500
+    "x": 90,
+    "y": 588
   },
   "exit": {
-    "x": 1200,
-    "y": 500
+    "x": 2450,
+    "y": 576
   },
   "walls": [
-    {"x": 0, "y": 644, "width": 1280, "height": 40},
-    {"x": 0, "y": 0, "width": 160, "height": 288},
-    {"x": 0, "y": 288, "width": 96, "height": 64},
-    {"x": 0, "y": 352, "width": 32, "height": 320},
-    {"x": 1120, "y": 0, "width": 160, "height": 288},
-    {"x": 1184, "y": 288, "width": 96, "height": 64},
-    {"x": 1248, "y": 352, "width": 32, "height": 320},
-    {"x": 192, "y": 480, "width": 256, "height": 32},
-    {"x": 480, "y": 608, "width": 96, "height": 32},
-    {"x": 608, "y": 576, "width": 96, "height": 32},
-    {"x": 704, "y": 512, "width": 192, "height": 32}
+    {
+      "x": 0,
+      "y": 648,
+      "width": 2600,
+      "height": 60
+    },
+    {
+      "x": -20,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 2600,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 639,
+      "y": 518,
+      "width": 204,
+      "height": 26
+    },
+    {
+      "x": 916,
+      "y": 518,
+      "width": 162,
+      "height": 26
+    },
+    {
+      "x": 1411,
+      "y": 518,
+      "width": 221,
+      "height": 26
+    },
+    {
+      "x": 1742,
+      "y": 518,
+      "width": 225,
+      "height": 26
+    },
+    {
+      "x": 2078,
+      "y": 518,
+      "width": 220,
+      "height": 26
+    }
   ],
   "enemies": [
-    {"type": "bat", "x": 400, "y": 400, "patrol": 200},
-    {"type": "bat", "x": 800, "y": 300, "patrol": 150},
-    {"type": "werewolf", "x": 600, "y": 500, "patrol": 300}
+    {
+      "type": "bat",
+      "x": 360,
+      "y": 602,
+      "patrol": 185
+    },
+    {
+      "type": "bat",
+      "x": 741,
+      "y": 474,
+      "patrol": 144
+    },
+    {
+      "type": "bat",
+      "x": 997,
+      "y": 474,
+      "patrol": 102
+    },
+    {
+      "type": "bat",
+      "x": 1521,
+      "y": 474,
+      "patrol": 161
+    }
   ],
-  "items": []
+  "items": [
+    {
+      "type": "meat",
+      "x": 1521,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 1356,
+      "y": 602
+    }
+  ]
 }

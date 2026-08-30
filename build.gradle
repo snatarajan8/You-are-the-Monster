@@ -39,25 +39,27 @@ def getJavafxPlatform() {
 }
 
 application {
-    mainClass = 'Game'
+    // Launcher is a plain class; a jar whose Main-Class extends
+    // javafx.application.Application fails with "JavaFX runtime components are missing".
+    mainClass = 'Launcher'
 }
 
 shadowJar {
     archiveBaseName.set('YouAreTheMonster')
     archiveClassifier.set('')
     archiveVersion.set('1.0.0')
-    
+
     manifest {
-        attributes 'Main-Class': 'Game'
+        attributes 'Main-Class': 'Launcher'
     }
-    
+
     mergeServiceFiles()
 }
 
 jar {
     manifest {
         attributes(
-            'Main-Class': 'Game',
+            'Main-Class': 'Launcher',
             'Implementation-Title': 'You Are The Monster',
             'Implementation-Version': version
         )

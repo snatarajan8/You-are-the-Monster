@@ -1,44 +1,148 @@
 {
-  "name": "Castle Walls - Castle Interior",
+  "name": "Castle Walls - Depths",
   "area": 5,
   "levelNumber": 2,
   "background": "resources/background layers.png",
-  "width": 1600,
-  "height": 800,
+  "width": 3980,
+  "height": 704,
   "playerStart": {
-    "x": 100,
-    "y": 700
+    "x": 90,
+    "y": 588
   },
   "exit": {
-    "x": 1500,
-    "y": 300
+    "x": 3830,
+    "y": 576
   },
   "walls": [
-    {"x": 0, "y": 744, "width": 1600, "height": 40},
-    {"x": 0, "y": 0, "width": 160, "height": 288},
-    {"x": 0, "y": 288, "width": 96, "height": 64},
-    {"x": 0, "y": 352, "width": 32, "height": 448},
-    {"x": 1520, "y": 0, "width": 80, "height": 288},
-    {"x": 1568, "y": 288, "width": 32, "height": 512},
-    {"x": 150, "y": 650, "width": 200, "height": 32},
-    {"x": 400, "y": 580, "width": 150, "height": 32},
-    {"x": 650, "y": 500, "width": 120, "height": 32},
-    {"x": 850, "y": 430, "width": 150, "height": 32},
-    {"x": 1050, "y": 360, "width": 120, "height": 32},
-    {"x": 1250, "y": 380, "width": 150, "height": 32},
-    {"x": 1400, "y": 320, "width": 150, "height": 32}
+    {
+      "x": 0,
+      "y": 648,
+      "width": 3980,
+      "height": 60
+    },
+    {
+      "x": -20,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 3980,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 360,
+      "y": 448,
+      "width": 166,
+      "height": 26
+    },
+    {
+      "x": 896,
+      "y": 518,
+      "width": 129,
+      "height": 26
+    },
+    {
+      "x": 1127,
+      "y": 518,
+      "width": 218,
+      "height": 26
+    },
+    {
+      "x": 1972,
+      "y": 518,
+      "width": 176,
+      "height": 26
+    },
+    {
+      "x": 2509,
+      "y": 518,
+      "width": 238,
+      "height": 26
+    },
+    {
+      "x": 2834,
+      "y": 448,
+      "width": 134,
+      "height": 26
+    },
+    {
+      "x": 3073,
+      "y": 358,
+      "width": 203,
+      "height": 26
+    },
+    {
+      "x": 3356,
+      "y": 348,
+      "width": 182,
+      "height": 26
+    }
   ],
   "enemies": [
-    {"type": "knight", "x": 250, "y": 620, "patrol": 200},
-    {"type": "knight", "x": 500, "y": 550, "patrol": 150},
-    {"type": "knight", "x": 750, "y": 470, "patrol": 150},
-    {"type": "guard", "x": 1000, "y": 330, "patrol": 200},
-    {"type": "guard", "x": 1300, "y": 350, "patrol": 150}
+    {
+      "type": "knight",
+      "x": 628,
+      "y": 602,
+      "patrol": 222
+    },
+    {
+      "type": "knight",
+      "x": 1435,
+      "y": 602,
+      "patrol": 229
+    },
+    {
+      "type": "guard",
+      "x": 2221,
+      "y": 602,
+      "patrol": 159
+    },
+    {
+      "type": "knight",
+      "x": 2628,
+      "y": 474,
+      "patrol": 178
+    },
+    {
+      "type": "knight",
+      "x": 3447,
+      "y": 304,
+      "patrol": 122
+    }
   ],
   "items": [
-    {"type": "meat", "x": 200, "y": 620},
-    {"type": "meat", "x": 550, "y": 550},
-    {"type": "meat", "x": 900, "y": 400},
-    {"type": "meat", "x": 1350, "y": 350}
+    {
+      "type": "meat",
+      "x": 960,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 1236,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 2060,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 2901,
+      "y": 408
+    },
+    {
+      "type": "meat",
+      "x": 3174,
+      "y": 318
+    },
+    {
+      "type": "meat",
+      "x": 3447,
+      "y": 308
+    }
   ]
 }

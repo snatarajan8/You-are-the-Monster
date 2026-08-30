@@ -1,44 +1,138 @@
 {
-  "name": "Haunted Graveyard - Crypt",
+  "name": "Haunted Graveyard - Depths",
   "area": 3,
   "levelNumber": 2,
   "background": "resources/background layers.png",
-  "width": 1600,
-  "height": 800,
+  "width": 3460,
+  "height": 704,
   "playerStart": {
-    "x": 100,
-    "y": 700
+    "x": 90,
+    "y": 588
   },
   "exit": {
-    "x": 1500,
-    "y": 300
+    "x": 3310,
+    "y": 576
   },
   "walls": [
-    {"x": 0, "y": 744, "width": 1600, "height": 40},
-    {"x": 0, "y": 0, "width": 160, "height": 288},
-    {"x": 0, "y": 288, "width": 96, "height": 64},
-    {"x": 0, "y": 352, "width": 32, "height": 448},
-    {"x": 1520, "y": 0, "width": 80, "height": 288},
-    {"x": 1568, "y": 288, "width": 32, "height": 512},
-    {"x": 150, "y": 650, "width": 200, "height": 32},
-    {"x": 400, "y": 580, "width": 150, "height": 32},
-    {"x": 650, "y": 500, "width": 120, "height": 32},
-    {"x": 850, "y": 430, "width": 150, "height": 32},
-    {"x": 1050, "y": 360, "width": 120, "height": 32},
-    {"x": 1250, "y": 380, "width": 150, "height": 32},
-    {"x": 1400, "y": 320, "width": 150, "height": 32}
+    {
+      "x": 0,
+      "y": 648,
+      "width": 3460,
+      "height": 60
+    },
+    {
+      "x": -20,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 3460,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 360,
+      "y": 518,
+      "width": 188,
+      "height": 26
+    },
+    {
+      "x": 653,
+      "y": 448,
+      "width": 170,
+      "height": 26
+    },
+    {
+      "x": 917,
+      "y": 518,
+      "width": 134,
+      "height": 26
+    },
+    {
+      "x": 1162,
+      "y": 428,
+      "width": 184,
+      "height": 26
+    },
+    {
+      "x": 1424,
+      "y": 428,
+      "width": 168,
+      "height": 26
+    },
+    {
+      "x": 1710,
+      "y": 518,
+      "width": 217,
+      "height": 26
+    },
+    {
+      "x": 2296,
+      "y": 518,
+      "width": 229,
+      "height": 26
+    },
+    {
+      "x": 2635,
+      "y": 518,
+      "width": 186,
+      "height": 26
+    }
   ],
   "enemies": [
-    {"type": "zombie", "x": 250, "y": 620, "patrol": 200},
-    {"type": "zombie", "x": 500, "y": 550, "patrol": 150},
-    {"type": "zombie", "x": 750, "y": 470, "patrol": 150},
-    {"type": "skeleton", "x": 1000, "y": 330, "patrol": 200},
-    {"type": "skeleton", "x": 1300, "y": 350, "patrol": 150}
+    {
+      "type": "skeleton",
+      "x": 1818,
+      "y": 474,
+      "patrol": 157
+    },
+    {
+      "type": "skeleton",
+      "x": 2021,
+      "y": 602,
+      "patrol": 237
+    },
+    {
+      "type": "skeleton",
+      "x": 2410,
+      "y": 474,
+      "patrol": 169
+    },
+    {
+      "type": "skeleton",
+      "x": 2728,
+      "y": 474,
+      "patrol": 126
+    },
+    {
+      "type": "skeleton",
+      "x": 2896,
+      "y": 602,
+      "patrol": 164
+    }
   ],
   "items": [
-    {"type": "meat", "x": 200, "y": 620},
-    {"type": "meat", "x": 550, "y": 550},
-    {"type": "meat", "x": 900, "y": 400},
-    {"type": "meat", "x": 1350, "y": 350}
+    {
+      "type": "meat",
+      "x": 738,
+      "y": 408
+    },
+    {
+      "type": "meat",
+      "x": 984,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 1818,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 2728,
+      "y": 478
+    }
   ]
 }

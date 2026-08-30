@@ -46,7 +46,7 @@ public class TitleScreen {
         
         // Controls
         controlsText = new Text(width/2 - 250, height/2 + 120, 
-            "Controls: Arrow Keys = Move, UP = Jump, Click = Attack, ESC = Pause");
+            "Arrow Keys / WASD = Move    UP = Jump    Z / Click = Attack    ESC = Pause");
         controlsText.setFill(Color.GRAY);
         controlsText.setFont(Font.font("Monospace", 14));
         

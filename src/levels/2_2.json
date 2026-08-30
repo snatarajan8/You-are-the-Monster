@@ -1,42 +1,121 @@
 {
-  "name": "Abandoned Village - Town Center",
+  "name": "Abandoned Village - Depths",
   "area": 2,
   "levelNumber": 2,
   "background": "resources/background layers.png",
-  "width": 1600,
+  "width": 3200,
   "height": 704,
   "playerStart": {
-    "x": 100,
-    "y": 500
+    "x": 90,
+    "y": 588
   },
   "exit": {
-    "x": 1500,
-    "y": 200
+    "x": 3050,
+    "y": 576
   },
   "walls": [
-    {"x": 0, "y": 644, "width": 1600, "height": 40},
-    {"x": 0, "y": 0, "width": 160, "height": 288},
-    {"x": 0, "y": 288, "width": 96, "height": 64},
-    {"x": 0, "y": 352, "width": 32, "height": 320},
-    {"x": 1520, "y": 0, "width": 80, "height": 288},
-    {"x": 1568, "y": 288, "width": 32, "height": 416},
-    {"x": 150, "y": 550, "width": 180, "height": 32},
-    {"x": 400, "y": 480, "width": 150, "height": 32},
-    {"x": 650, "y": 400, "width": 120, "height": 32},
-    {"x": 850, "y": 520, "width": 200, "height": 32},
-    {"x": 1100, "y": 450, "width": 150, "height": 32},
-    {"x": 1300, "y": 350, "width": 180, "height": 32},
-    {"x": 1400, "y": 250, "width": 150, "height": 32}
+    {
+      "x": 0,
+      "y": 648,
+      "width": 3200,
+      "height": 60
+    },
+    {
+      "x": -20,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 3200,
+      "y": 0,
+      "width": 20,
+      "height": 704
+    },
+    {
+      "x": 360,
+      "y": 518,
+      "width": 169,
+      "height": 26
+    },
+    {
+      "x": 647,
+      "y": 518,
+      "width": 127,
+      "height": 26
+    },
+    {
+      "x": 869,
+      "y": 448,
+      "width": 145,
+      "height": 26
+    },
+    {
+      "x": 1104,
+      "y": 448,
+      "width": 144,
+      "height": 26
+    },
+    {
+      "x": 1351,
+      "y": 518,
+      "width": 226,
+      "height": 26
+    },
+    {
+      "x": 1692,
+      "y": 518,
+      "width": 180,
+      "height": 26
+    },
+    {
+      "x": 1970,
+      "y": 428,
+      "width": 132,
+      "height": 26
+    },
+    {
+      "x": 2221,
+      "y": 428,
+      "width": 135,
+      "height": 26
+    },
+    {
+      "x": 2438,
+      "y": 358,
+      "width": 175,
+      "height": 26
+    }
   ],
   "enemies": [
-    {"type": "guard", "x": 250, "y": 520, "patrol": 200},
-    {"type": "guard", "x": 500, "y": 450, "patrol": 150},
-    {"type": "guard", "x": 900, "y": 490, "patrol": 250},
-    {"type": "guard", "x": 1200, "y": 420, "patrol": 200}
+    {
+      "type": "bat",
+      "x": 1782,
+      "y": 474,
+      "patrol": 120
+    },
+    {
+      "type": "guard",
+      "x": 2695,
+      "y": 602,
+      "patrol": 184
+    }
   ],
   "items": [
-    {"type": "meat", "x": 200, "y": 520},
-    {"type": "meat", "x": 700, "y": 370},
-    {"type": "meat", "x": 1150, "y": 420}
+    {
+      "type": "meat",
+      "x": 444,
+      "y": 478
+    },
+    {
+      "type": "meat",
+      "x": 2036,
+      "y": 388
+    },
+    {
+      "type": "meat",
+      "x": 2525,
+      "y": 318
+    }
   ]
 }

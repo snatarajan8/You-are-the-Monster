@@ -1,56 +1,50 @@
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 public class HUD {
-    private Pane pane;
-    private Rectangle healthBar;
-    private Rectangle healthBarBackground;
-    private Text healthText;
-    private static final int HUD_X = 10;
-    private static final int HUD_Y = 10;
-    private static final int BAR_WIDTH = 200;
-    private static final int BAR_HEIGHT = 20;
+
+    private final Pane pane = new Pane();
+    private final Rectangle healthBar;
+    private final Text healthText;
+    private final Text levelText;
+    private final Text scoreText;
+    private static final int BAR_WIDTH = 220;
+    private static final int BAR_HEIGHT = 18;
 
     public HUD() {
-        pane = new Pane();
-        
-        // Health bar background
-        healthBarBackground = new Rectangle(HUD_X, HUD_Y, BAR_WIDTH, BAR_HEIGHT);
-        healthBarBackground.setFill(Color.DARKGRAY);
-        healthBarBackground.setStroke(Color.BLACK);
-        healthBarBackground.setStrokeWidth(2);
-        
-        // Health bar
-        healthBar = new Rectangle(HUD_X, HUD_Y, BAR_WIDTH, BAR_HEIGHT);
-        healthBar.setFill(Color.RED);
-        
-        // Health text
-        healthText = new Text(HUD_X + BAR_WIDTH + 10, HUD_Y + 15, "100/100");
-        healthText.setFill(Color.WHITE);
-        healthText.setFont(Font.font("Monospace", 14));
-        
-        pane.getChildren().addAll(healthBarBackground, healthBar, healthText);
+        Rectangle bg = new Rectangle(12, 12, BAR_WIDTH, BAR_HEIGHT);
+        bg.setFill(Color.web("#00000088"));
+        bg.setStroke(Color.web("#000000"));
+        bg.setStrokeWidth(2);
+
+        healthBar = new Rectangle(12, 12, BAR_WIDTH, BAR_HEIGHT);
+        healthBar.setFill(Color.web("#3fbf5f"));
+
+        healthText = label(12 + BAR_WIDTH + 10, 26, 13, Color.WHITE);
+        levelText = label(12, 52, 13, Color.web("#c8c8d8"));
+        scoreText = label(12, 72, 13, Color.web("#e0c060"));
+
+        pane.getChildren().addAll(bg, healthBar, healthText, levelText, scoreText);
+        pane.setMouseTransparent(true);
     }
 
-    public void update(int currentHealth, int maxHealth) {
-        // Update health bar width
-        double healthPercentage = (double) currentHealth / maxHealth;
-        healthBar.setWidth(BAR_WIDTH * healthPercentage);
-        
-        // Change color based on health
-        if (healthPercentage > 0.6) {
-            healthBar.setFill(Color.GREEN);
-        } else if (healthPercentage > 0.3) {
-            healthBar.setFill(Color.YELLOW);
-        } else {
-            healthBar.setFill(Color.RED);
-        }
-        
-        // Update text
-        healthText.setText(currentHealth + "/" + maxHealth);
+    private Text label(double x, double y, int size, Color color) {
+        Text t = new Text(x, y, "");
+        t.setFill(color);
+        t.setFont(Font.font("Monospaced", size));
+        return t;
+    }
+
+    public void update(int health, int maxHealth, String levelName, int levelIndex, int totalLevels, int score) {
+        double pct = maxHealth <= 0 ? 0 : Math.max(0, (double) health / maxHealth);
+        healthBar.setWidth(BAR_WIDTH * pct);
+        healthBar.setFill(pct > 0.6 ? Color.web("#3fbf5f") : pct > 0.3 ? Color.web("#d4b02a") : Color.web("#c8402a"));
+        healthText.setText(Math.max(0, health) + " / " + maxHealth);
+        levelText.setText("Level " + (levelIndex + 1) + "/" + totalLevels + "  -  " + levelName);
+        scoreText.setText("Score: " + score);
     }
 
     public Pane getPane() {
