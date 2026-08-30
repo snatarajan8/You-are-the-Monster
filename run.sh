@@ -67,4 +67,4 @@ if [ -f "lib/json.jar" ]; then
 fi
 
 echo "Starting game..."
-java -cp "$CP" Game
+java --module-path "$JAVAFX_MODS" --add-modules javafx.controls,javafx.fxml -cp "build/classes" Game
