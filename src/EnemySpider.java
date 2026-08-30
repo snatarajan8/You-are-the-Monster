@@ -1,11 +1,11 @@
 import java.awt.Rectangle;
 
-public class EnemyBat extends Enemy {
+public class EnemySpider extends Enemy {
 
-    public static final int BAT_WIDTH = 20;
-    public static final int BAT_HEIGHT = 20;
-    private static final int BAT_HEALTH = 30;
-    private static final int BAT_DAMAGE = 5;
+    public static final int SPIDER_WIDTH = 24;
+    public static final int SPIDER_HEIGHT = 16;
+    private static final int SPIDER_HEALTH = 25;
+    private static final int SPIDER_DAMAGE = 6;
     private static final int PATROL_SPEED = 3;
     private static final int CHASE_SPEED = 5;
 
@@ -13,36 +13,37 @@ public class EnemyBat extends Enemy {
     private int travelled;
     private int patrolDirection;
 
-    public EnemyBat(Game game, int x, int y, int height, int width, int patrolDistance) {
-        super(game, x, y, height, width, BAT_HEALTH, BAT_DAMAGE);
-        movementFactor = PATROL_SPEED;
-        distance = patrolDistance;
+    public EnemySpider(Game game, int x, int y, int patrolArea) {
+        super(game, x, y, SPIDER_WIDTH, SPIDER_HEIGHT, SPIDER_HEALTH, SPIDER_DAMAGE);
+        distance = patrolArea;
         travelled = 0;
         patrolDirection = 1;
-        visionRange = 150;
+        visionRange = 120;
         visionBox = new Rectangle(x - visionRange, y - visionRange/2, 
-            width + visionRange * 2, height + visionRange);
+            SPIDER_WIDTH + visionRange * 2, SPIDER_HEIGHT + visionRange);
         enemyState = EnemyState.PATROL;
         initAnimation();
     }
 
     private void initAnimation() {
         animation = new SpriteAnimation();
+        // Spider uses bat sprites as placeholder
         animation.addSequence(State.MOVELEFT, animArray("resources/Bat/MOVELEFT", 4));
         animation.addSequence(State.MOVERIGHT, animArray("resources/Bat/MOVERIGHT", 4));
     }
 
     @Override
     protected void updateIdle() {
-        // Bats are always patrolling
-        enemyState = EnemyState.PATROL;
+        velocity.horizontal = 0;
+        if (canSeePlayer()) {
+            enemyState = EnemyState.CHASE;
+        }
     }
 
     @Override
     protected void updatePatrol() {
         movementFactor = PATROL_SPEED;
         
-        // Move back and forth
         if (patrolDirection > 0) {
             moveHorizontal(false, true);
         } else {
@@ -56,7 +57,6 @@ public class EnemyBat extends Enemy {
             travelled = 0;
         }
         
-        // Check if player is visible
         if (canSeePlayer()) {
             enemyState = EnemyState.CHASE;
         }
@@ -73,7 +73,6 @@ public class EnemyBat extends Enemy {
         
         moveTowardPlayer();
         
-        // Check if in attack range
         if (isPlayerInRange(attackRange)) {
             enemyState = EnemyState.ATTACK;
         }
@@ -84,7 +83,6 @@ public class EnemyBat extends Enemy {
         velocity.horizontal = 0;
         
         if (currentAttackCooldown <= 0) {
-            // Deal damage to player
             if (targetPlayer != null && isPlayerInRange(attackRange)) {
                 targetPlayer.damageHealth(attackDamage);
                 currentAttackCooldown = attackCooldown;

@@ -1,0 +1,19 @@
+# Compiled class files
+src/*.class
+
+# IDE files
+.classpath
+.project
+.settings/
+
+# opencode internal files
+.opencode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+*.swp

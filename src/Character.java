@@ -21,6 +21,9 @@ public abstract class Character extends CollisionUnit {
     protected Set<CollisionUnit> units;
     protected boolean keypressed;
     protected SpriteAnimation animation;
+    protected boolean invincible;
+    protected int invincibilityTimer;
+    protected static final int INVINCIBILITY_DURATION = 30;
 
     public Character(Game game, int x, int y, int height, int width) {
         super(x, y, height, width);
@@ -30,11 +33,17 @@ public abstract class Character extends CollisionUnit {
         velocity = new Velocity();
 	    left = false;
         keypressed = false;
+        invincible = false;
+        invincibilityTimer = 0;
         units = game.getCollisionSet();
     }
 
     public void damageHealth(int damage) {
+        if (invincible) return;
+        
         health -= damage;
+        invincible = true;
+        invincibilityTimer = INVINCIBILITY_DURATION;
     }
 
     public void moveHorizontal(boolean direction, boolean click) {
@@ -66,7 +75,14 @@ public abstract class Character extends CollisionUnit {
 
 //check if head hits the wall
     public void update() {
-        System.out.println(rectangle);
+        // Update invincibility
+        if (invincible) {
+            invincibilityTimer--;
+            if (invincibilityTimer <= 0) {
+                invincible = false;
+            }
+        }
+        
         int moveHorizontally = iterateThroughCollision(mapDir(true, velocity.horizontal), Math.abs(velocity.horizontal));
         int moveVertically = iterateThroughCollision(mapDir(false, velocity.vertical), Math.abs(velocity.vertical));
         velocityTime++;
@@ -108,8 +124,7 @@ public abstract class Character extends CollisionUnit {
             }
         }
 
-        velocity.horizontal = keypressed ? velocity.horizontal : 0;
-        keypressed = false;
+        // Velocity reset now handled by key release in Game.java
 
         //speedcap
         if (Math.abs(velocity.horizontal) > movementFactor) {

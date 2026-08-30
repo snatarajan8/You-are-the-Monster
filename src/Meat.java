@@ -2,20 +2,21 @@ import javafx.scene.layout.Pane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-/**
- * Created by marc on 8/22/15.
- */
 public class Meat extends Pickup {
     private ImageView image;
+    private static final int HEAL_AMOUNT = 20;
+
     public Meat(Pane level, int x, int y, int height, int width) {
         super(level, x, y, height, width);
-        //SET IMAGE VIEW HERE this.setImageView();
-        image = new ImageView("resources/pickup/meat.png");
+        image = new ImageView("resources/Pickup/meat.png");
     }
 
     public void onPickup(Player player) {
         super.onPickup();
-        //HEAL PLAYER HERE
+        player.heal(HEAL_AMOUNT);
+    }
 
+    public ImageView getImage() {
+        return image;
     }
 }

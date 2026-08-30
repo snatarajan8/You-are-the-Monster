@@ -8,8 +8,8 @@ public class BatAttack extends CollisionUnit{
 
     public BatAttack(Game game, int x, int y, int height, int width, int velocityx, int velocityy) {
         super(x, y, height, width);
-        this.directionx = directionx;
-        this.directiony = directiony;
+        this.directionx = velocityx;
+        this.directiony = velocityy;
         units = game.getCollisionSet();
     }
 

@@ -1,49 +1,63 @@
 import java.awt.Rectangle;
+import java.util.Random;
 
-public class EnemyWerewolf extends Enemy {
+public class EnemySkeleton extends Enemy {
 
-    public static final int WOLF_WIDTH = 32;
-    public static final int WOLF_HEIGHT = 32;
-    private static final int WOLF_HEALTH = 60;
-    private static final int WOLF_DAMAGE = 10;
-    private static final int PATROL_SPEED = 4;
-    private static final int CHASE_SPEED = 7;
+    public static final int SKELETON_WIDTH = 24;
+    public static final int SKELETON_HEIGHT = 32;
+    private static final int SKELETON_HEALTH = 40;
+    private static final int SKELETON_DAMAGE = 8;
+    private static final int PATROL_SPEED = 2;
+    private static final int CHASE_SPEED = 4;
 
     private int distance;
     private int travelled;
     private int patrolDirection;
+    private Random random;
+    private int idleTimer;
+    private static final int IDLE_DURATION = 60;
 
-    public EnemyWerewolf(Game game, int x, int y, int patrolArea) {
-        super(game, x, y, WOLF_WIDTH, WOLF_HEIGHT, WOLF_HEALTH, WOLF_DAMAGE);
+    public EnemySkeleton(Game game, int x, int y, int patrolArea) {
+        super(game, x, y, SKELETON_WIDTH, SKELETON_HEIGHT, SKELETON_HEALTH, SKELETON_DAMAGE);
         distance = patrolArea;
         travelled = 0;
         patrolDirection = 1;
-        visionRange = 250;
+        visionRange = 180;
         visionBox = new Rectangle(x - visionRange, y - visionRange/2, 
-            WOLF_WIDTH + visionRange * 2, WOLF_HEIGHT + visionRange);
-        enemyState = EnemyState.PATROL;
+            SKELETON_WIDTH + visionRange * 2, SKELETON_HEIGHT + visionRange);
+        enemyState = EnemyState.IDLE;
+        random = new Random();
+        idleTimer = random.nextInt(IDLE_DURATION);
         initAnimation();
     }
 
     private void initAnimation() {
         animation = new SpriteAnimation();
-        animation.addSequence(State.FACELEFT, animArray("resources/werewolf/FACELEFT", 3));
-        animation.addSequence(State.FACERIGHT, animArray("resources/werewolf/FACERIGHT", 3));
-        animation.addSequence(State.MOVELEFT, animArray("resources/werewolf/MOVELEFT", 6));
-        animation.addSequence(State.MOVERIGHT, animArray("resources/werewolf/MOVERIGHT", 6));
+        animation.addSequence(State.FACELEFT, animArray("resources/skeleton/FACELEFT", 3));
+        animation.addSequence(State.FACERIGHT, animArray("resources/skeleton/FACERIGHT", 3));
+        animation.addSequence(State.MOVELEFT, animArray("resources/skeleton/MOVELEFT", 6));
+        animation.addSequence(State.MOVERIGHT, animArray("resources/skeleton/MOVERIGHT", 6));
     }
 
     @Override
     protected void updateIdle() {
-        // Werewolves are always patrolling
-        enemyState = EnemyState.PATROL;
+        velocity.horizontal = 0;
+        idleTimer--;
+        
+        if (idleTimer <= 0) {
+            enemyState = EnemyState.PATROL;
+            patrolDirection = random.nextBoolean() ? 1 : -1;
+        }
+        
+        if (canSeePlayer()) {
+            enemyState = EnemyState.CHASE;
+        }
     }
 
     @Override
     protected void updatePatrol() {
         movementFactor = PATROL_SPEED;
         
-        // Move back and forth
         if (patrolDirection > 0) {
             moveHorizontal(false, true);
         } else {
@@ -53,11 +67,12 @@ public class EnemyWerewolf extends Enemy {
         travelled += Math.abs(velocity.horizontal);
         
         if (travelled >= distance) {
-            patrolDirection *= -1;
+            enemyState = EnemyState.IDLE;
+            idleTimer = IDLE_DURATION;
             travelled = 0;
+            velocity.horizontal = 0;
         }
         
-        // Check if player is visible
         if (canSeePlayer()) {
             enemyState = EnemyState.CHASE;
         }
@@ -74,7 +89,6 @@ public class EnemyWerewolf extends Enemy {
         
         moveTowardPlayer();
         
-        // Check if in attack range
         if (isPlayerInRange(attackRange)) {
             enemyState = EnemyState.ATTACK;
         }
@@ -85,7 +99,6 @@ public class EnemyWerewolf extends Enemy {
         velocity.horizontal = 0;
         
         if (currentAttackCooldown <= 0) {
-            // Deal damage to player
             if (targetPlayer != null && isPlayerInRange(attackRange)) {
                 targetPlayer.damageHealth(attackDamage);
                 currentAttackCooldown = attackCooldown;

@@ -1,0 +1,41 @@
+{
+  "name": "Cursed Caves - Entrance",
+  "area": 4,
+  "levelNumber": 1,
+  "background": "resources/background layers.png",
+  "width": 1400,
+  "height": 800,
+  "playerStart": {
+    "x": 100,
+    "y": 700
+  },
+  "exit": {
+    "x": 1300,
+    "y": 200
+  },
+  "walls": [
+    {"x": 0, "y": 744, "width": 1400, "height": 40},
+    {"x": 0, "y": 0, "width": 160, "height": 288},
+    {"x": 0, "y": 288, "width": 96, "height": 64},
+    {"x": 0, "y": 352, "width": 32, "height": 448},
+    {"x": 1320, "y": 0, "width": 80, "height": 288},
+    {"x": 1368, "y": 288, "width": 32, "height": 512},
+    {"x": 150, "y": 650, "width": 200, "height": 32},
+    {"x": 400, "y": 580, "width": 150, "height": 32},
+    {"x": 650, "y": 500, "width": 120, "height": 32},
+    {"x": 850, "y": 430, "width": 150, "height": 32},
+    {"x": 1050, "y": 360, "width": 120, "height": 32},
+    {"x": 1200, "y": 280, "width": 150, "height": 32}
+  ],
+  "enemies": [
+    {"type": "spider", "x": 250, "y": 620, "patrol": 200},
+    {"type": "spider", "x": 500, "y": 550, "patrol": 150},
+    {"type": "spider", "x": 750, "y": 470, "patrol": 150},
+    {"type": "bat", "x": 1000, "y": 330, "patrol": 200}
+  ],
+  "items": [
+    {"type": "meat", "x": 200, "y": 620},
+    {"type": "meat", "x": 550, "y": 550},
+    {"type": "meat", "x": 900, "y": 400}
+  ]
+}
