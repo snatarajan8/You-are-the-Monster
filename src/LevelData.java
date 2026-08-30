@@ -2,10 +2,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 public class LevelData {
     private String backgroundPath;
@@ -66,68 +65,76 @@ public class LevelData {
         LevelData level = new LevelData();
         
         try {
-            JSONParser parser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(filePath));
+            // Read file content
+            StringBuilder content = new StringBuilder();
+            try (FileReader reader = new FileReader(filePath)) {
+                char[] buffer = new char[1024];
+                int read;
+                while ((read = reader.read(buffer)) != -1) {
+                    content.append(buffer, 0, read);
+                }
+            }
+            
+            JSONObject jsonObject = new JSONObject(content.toString());
             
             // Parse basic level info
-            level.backgroundPath = (String) jsonObject.get("background");
-            level.levelWidth = ((Long) jsonObject.get("width")).intValue();
-            level.levelHeight = ((Long) jsonObject.get("height")).intValue();
+            level.backgroundPath = jsonObject.optString("background", "resources/background layers.png");
+            level.levelWidth = jsonObject.optInt("width", 1280);
+            level.levelHeight = jsonObject.optInt("height", 704);
             
             // Parse player start
-            JSONObject playerStart = (JSONObject) jsonObject.get("playerStart");
+            JSONObject playerStart = jsonObject.optJSONObject("playerStart");
             if (playerStart != null) {
-                level.playerStartX = ((Long) playerStart.get("x")).intValue();
-                level.playerStartY = ((Long) playerStart.get("y")).intValue();
+                level.playerStartX = playerStart.optInt("x", 100);
+                level.playerStartY = playerStart.optInt("y", 500);
             }
             
             // Parse exit
-            JSONObject exit = (JSONObject) jsonObject.get("exit");
+            JSONObject exit = jsonObject.optJSONObject("exit");
             if (exit != null) {
-                level.exitX = ((Long) exit.get("x")).intValue();
-                level.exitY = ((Long) exit.get("y")).intValue();
+                level.exitX = exit.optInt("x", 1200);
+                level.exitY = exit.optInt("y", 500);
             }
             
             // Parse walls
-            JSONArray wallsArray = (JSONArray) jsonObject.get("walls");
+            JSONArray wallsArray = jsonObject.optJSONArray("walls");
             if (wallsArray != null) {
-                for (Object obj : wallsArray) {
-                    JSONObject wallJson = (JSONObject) obj;
-                    int x = ((Long) wallJson.get("x")).intValue();
-                    int y = ((Long) wallJson.get("y")).intValue();
-                    int width = ((Long) wallJson.get("width")).intValue();
-                    int height = ((Long) wallJson.get("height")).intValue();
+                for (int i = 0; i < wallsArray.length(); i++) {
+                    JSONObject wallJson = wallsArray.getJSONObject(i);
+                    int x = wallJson.optInt("x", 0);
+                    int y = wallJson.optInt("y", 0);
+                    int width = wallJson.optInt("width", 100);
+                    int height = wallJson.optInt("height", 100);
                     level.walls.add(new WallData(x, y, width, height));
                 }
             }
             
             // Parse enemies
-            JSONArray enemiesArray = (JSONArray) jsonObject.get("enemies");
+            JSONArray enemiesArray = jsonObject.optJSONArray("enemies");
             if (enemiesArray != null) {
-                for (Object obj : enemiesArray) {
-                    JSONObject enemyJson = (JSONObject) obj;
-                    String type = (String) enemyJson.get("type");
-                    int x = ((Long) enemyJson.get("x")).intValue();
-                    int y = ((Long) enemyJson.get("y")).intValue();
-                    int patrol = enemyJson.containsKey("patrol") ? 
-                        ((Long) enemyJson.get("patrol")).intValue() : 200;
+                for (int i = 0; i < enemiesArray.length(); i++) {
+                    JSONObject enemyJson = enemiesArray.getJSONObject(i);
+                    String type = enemyJson.optString("type", "bat");
+                    int x = enemyJson.optInt("x", 0);
+                    int y = enemyJson.optInt("y", 0);
+                    int patrol = enemyJson.optInt("patrol", 200);
                     level.enemies.add(new EnemyData(type, x, y, patrol));
                 }
             }
             
             // Parse items
-            JSONArray itemsArray = (JSONArray) jsonObject.get("items");
+            JSONArray itemsArray = jsonObject.optJSONArray("items");
             if (itemsArray != null) {
-                for (Object obj : itemsArray) {
-                    JSONObject itemJson = (JSONObject) obj;
-                    String type = (String) itemJson.get("type");
-                    int x = ((Long) itemJson.get("x")).intValue();
-                    int y = ((Long) itemJson.get("y")).intValue();
+                for (int i = 0; i < itemsArray.length(); i++) {
+                    JSONObject itemJson = itemsArray.getJSONObject(i);
+                    String type = itemJson.optString("type", "meat");
+                    int x = itemJson.optInt("x", 0);
+                    int y = itemJson.optInt("y", 0);
                     level.items.add(new ItemData(type, x, y));
                 }
             }
             
-        } catch (IOException | ParseException e) {
+        } catch (IOException | JSONException e) {
             System.out.println("Error loading level: " + e.getMessage());
             // Return default level
             level.createDefaultLevel();
