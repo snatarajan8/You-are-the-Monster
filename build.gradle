@@ -1,7 +1,6 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.1.0'
     id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
@@ -16,15 +15,27 @@ java {
 
 repositories {
     mavenCentral()
+    maven { url 'https://plugins.gradle.org/m2/' }
 }
 
-javafx {
-    version = "17.0.2"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
-}
+// JavaFX version
+def javafxVersion = '17.0.2'
+def javafxPlatform = getJavafxPlatform()
 
 dependencies {
+    implementation "org.openjfx:javafx-controls:${javafxVersion}:${javafxPlatform}"
+    implementation "org.openjfx:javafx-fxml:${javafxVersion}:${javafxPlatform}"
+    implementation "org.openjfx:javafx-graphics:${javafxVersion}:${javafxPlatform}"
     implementation 'org.json:json:20231013'
+}
+
+def getJavafxPlatform() {
+    def os = System.getProperty('os.name', '').toLowerCase()
+    def arch = System.getProperty('os.arch', '').toLowerCase()
+    if (os.contains('win')) return 'win'
+    if (os.contains('mac') || os.contains('darwin')) return 'mac'
+    if (os.contains('linux')) return 'linux'
+    return 'linux'
 }
 
 application {
@@ -40,7 +51,6 @@ shadowJar {
         attributes 'Main-Class': 'Game'
     }
     
-    // Merge service files
     mergeServiceFiles()
 }
 
